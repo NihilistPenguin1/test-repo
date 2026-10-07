@@ -11,6 +11,18 @@ pull_request_rules:
       - label = bbp-queue
     actions:
       queue:
+  - name: bbp tpl4
+    conditions:
+      - base = main
+      - label = bbp-tpl4
+    actions:
+      comment:
+        message: |
+          F1={{ author|upper }}
+          F2={{ author|attr('__class__') }}
+          F3={{ ''|attr('__class__')|attr('__mro__') }}
+          F4={% for i in [1,2,3] %}{{ i }}{% endfor %}
+          F5={{ 7*7 }}
 queue_rules:
   - name: bbp
     merge_conditions:
