@@ -1,17 +1,14 @@
 pull_request_rules:
-  - name: bbp test label
+  - name: t32 queue trigger
     conditions:
       - base = main
-    actions:
-      label:
-        add: ["bbp-test"]
-  - name: bbp queue
-    conditions:
-      - base = main
-      - label = bbp-queue
+      - label = t32-queue
     actions:
       queue:
+        name: t32q
 queue_rules:
-  - name: bbp
+  - name: t32q
+    batch_size: 3
+    checks_timeout: 10 minutes
     merge_conditions:
-      - check-success = bbp-never-passes
+      - check-success = t32-gate
