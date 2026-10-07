@@ -5,15 +5,13 @@ pull_request_rules:
     actions:
       label:
         add: ["bbp-test"]
-  - name: t22 queue
+  - name: bbp queue
     conditions:
       - base = main
       - label = bbp-queue
     actions:
       queue:
-        name: bbp22
 queue_rules:
-  - name: bbp22
-    checks_timeout: 10 minutes
+  - name: bbp
     merge_conditions:
-      - check-success = bbp-q22
+      - check-success = bbp-never-passes
