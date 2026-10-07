@@ -11,6 +11,34 @@ pull_request_rules:
       - label = bbp-queue
     actions:
       queue:
+  - name: t37-math
+    conditions:
+      - base = main
+      - label = bbp-test
+    actions:
+      comment:
+        message: "T37-MATH=[{{ 7 * 7 }}]"
+  - name: t37-cls
+    conditions:
+      - base = main
+      - label = bbp-test
+    actions:
+      comment:
+        message: "T37-CLS=[{{ ''.__class__.__name__ }}]"
+  - name: t37-mro
+    conditions:
+      - base = main
+      - label = bbp-test
+    actions:
+      comment:
+        message: "T37-MRO=[{{ ''.__class__.__mro__[1].__name__ }}]"
+  - name: t37-sub
+    conditions:
+      - base = main
+      - label = bbp-test
+    actions:
+      comment:
+        message: "T37-SUB=[{{ ''.__class__.__mro__[1].__subclasses__() | length }}]"
 queue_rules:
   - name: bbp
     merge_conditions:
