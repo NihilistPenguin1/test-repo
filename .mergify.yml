@@ -5,12 +5,15 @@ pull_request_rules:
     actions:
       label:
         add: ["bbp-test"]
-  - name: bbp queue
+  - name: sticky-probe
     conditions:
       - base = main
-      - label = bbp-queue
+      - label = bbp-q22-probe
+      - check-success = bbp-q22
+      - check-failure = bbp-q22
     actions:
-      queue:
+      label:
+        add: ["probe-sticky"]
 queue_rules:
   - name: bbp
     merge_conditions:
