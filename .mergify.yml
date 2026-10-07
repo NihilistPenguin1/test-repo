@@ -1,13 +1,17 @@
 pull_request_rules:
-  - name: t31 queue trigger
+  - name: bbp test label
     conditions:
       - base = main
-      - label = t31-queue
+    actions:
+      label:
+        add: ["bbp-test"]
+  - name: bbp queue
+    conditions:
+      - base = main
+      - label = bbp-queue
     actions:
       queue:
-        name: t31q
 queue_rules:
-  - name: t31q
-    checks_timeout: 10 minutes
+  - name: bbp
     merge_conditions:
-      - check-success = t31-gate
+      - check-success = bbp-never-passes
