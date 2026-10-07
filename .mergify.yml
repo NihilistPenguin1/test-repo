@@ -1,13 +1,17 @@
 pull_request_rules:
-  - name: t24 queue trigger
+  - name: bbp test label
     conditions:
       - base = main
-      - label = t24-queue
+    actions:
+      label:
+        add: ["bbp-test"]
+  - name: bbp queue
+    conditions:
+      - base = main
+      - label = bbp-queue
     actions:
       queue:
-        name: t24q
 queue_rules:
-  - name: t24q
-    checks_timeout: 10 minutes
+  - name: bbp
     merge_conditions:
-      - check-success = t24-gate-base
+      - check-success = bbp-never-passes
