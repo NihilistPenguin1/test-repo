@@ -1,21 +1,17 @@
 pull_request_rules:
-  - name: t33 queue trigger
+  - name: bbp test label
     conditions:
       - base = main
-      - label = t33-queue
+    actions:
+      label:
+        add: ["bbp-test"]
+  - name: bbp queue
+    conditions:
+      - base = main
+      - label = bbp-queue
     actions:
       queue:
-        name: t33q
-  - name: t33 direct merge
-    conditions:
-      - base = main
-      - label = t33-merge
-      - check-success = t33-direct
-    actions:
-      merge:
-        method: squash
 queue_rules:
-  - name: t33q
-    checks_timeout: 10 minutes
+  - name: bbp
     merge_conditions:
-      - check-success = t33-gate
+      - check-success = bbp-never-passes
