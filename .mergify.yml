@@ -11,22 +11,6 @@ pull_request_rules:
       - label = bbp-queue
     actions:
       queue:
-  - name: bbp cond ctrl
-    conditions:
-      - base = main
-      - label = bbp-cond-ctrl
-      - 'title ~= ^BBP queue testi \(PR #2\)$'
-    actions:
-      label:
-        add: ["bbp-cond-ctrl-fired"]
-  - name: bbp cond tpl
-    conditions:
-      - base = main
-      - label = bbp-cond-tpl
-      - 'title ~= ^BBP queue testi \(PR #{{ 1+1 }}\)$'
-    actions:
-      label:
-        add: ["bbp-cond-tpl-fired"]
 queue_rules:
   - name: bbp
     merge_conditions:
