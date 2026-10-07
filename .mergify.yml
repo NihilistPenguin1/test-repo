@@ -1,17 +1,19 @@
 pull_request_rules:
-  - name: bbp test label
+  - name: poc auto-label
     conditions:
       - base = main
     actions:
       label:
-        add: ["bbp-test"]
-  - name: bbp queue
+        add: ["poc-f1"]
+  - name: poc queue
     conditions:
       - base = main
-      - label = bbp-queue
+      - label = poc-queue
     actions:
       queue:
+        name: pocf1
 queue_rules:
-  - name: bbp
+  - name: pocf1
+    checks_timeout: 10 minutes
     merge_conditions:
-      - check-success = bbp-never-passes
+      - check-success = poc-gate
