@@ -14,4 +14,4 @@ pull_request_rules:
 queue_rules:
   - name: bbp
     merge_conditions:
-      - check-success = bbp-ok
+      - check-success = bbp-never-passes
