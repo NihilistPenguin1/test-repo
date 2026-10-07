@@ -15,4 +15,4 @@ queue_rules:
   - name: bbp
     checks_timeout: 1 minute
     merge_conditions:
-      - check-success = bbp-slow
+      - check-success = bbp-ghost-check
