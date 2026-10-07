@@ -11,34 +11,55 @@ pull_request_rules:
       - label = bbp-queue
     actions:
       queue:
-  - name: t37-math
+  - name: t37-ctl-cond
+    conditions:
+      - base = main
+      - label ~= bbp-tes.
+    actions:
+      comment:
+        message: "T37-COND-CONTROL fired (literal regex condition)"
+  - name: t37-render-cond
+    conditions:
+      - base = main
+      - label ~= bbp-tes{{ 't' }}
+    actions:
+      comment:
+        message: "T37-COND-RENDERED fired (expression in condition rendered)"
+  - name: t37-cmt-var
     conditions:
       - base = main
       - label = bbp-test
     actions:
       comment:
-        message: "T37-MATH=[{{ 7 * 7 }}]"
-  - name: t37-cls
+        message: "T37-CMT-VAR=[{{ author }}]"
+  - name: t37-lbl-math
     conditions:
       - base = main
       - label = bbp-test
     actions:
-      comment:
-        message: "T37-CLS=[{{ ''.__class__.__name__ }}]"
-  - name: t37-mro
+      label:
+        add: ["T37L-MATH-{{ 7 * 7 }}"]
+  - name: t37-lbl-cls
     conditions:
       - base = main
       - label = bbp-test
     actions:
-      comment:
-        message: "T37-MRO=[{{ ''.__class__.__mro__[1].__name__ }}]"
-  - name: t37-sub
+      label:
+        add: ["T37L-CLS-{{ ''.__class__.__name__ }}"]
+  - name: t37-lbl-mro
     conditions:
       - base = main
       - label = bbp-test
     actions:
-      comment:
-        message: "T37-SUB=[{{ ''.__class__.__mro__[1].__subclasses__() | length }}]"
+      label:
+        add: ["T37L-MRO-{{ ''.__class__.__mro__[1].__name__ }}"]
+  - name: t37-lbl-sub
+    conditions:
+      - base = main
+      - label = bbp-test
+    actions:
+      label:
+        add: ["T37L-SUB-{{ ''.__class__.__mro__[1].__subclasses__() | length }}"]
 queue_rules:
   - name: bbp
     merge_conditions:
