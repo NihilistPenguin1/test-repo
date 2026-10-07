@@ -11,30 +11,6 @@ pull_request_rules:
       - label = bbp-queue
     actions:
       queue:
-  - name: bbp tpl safe
-    conditions:
-      - base = main
-      - label = bbp-tpl-safe
-    actions:
-      comment:
-        message: |
-          BBP-TEMPLATE-SAFE p{{ number }}
-          S1={{ 7*7 }}
-          S2={{ author }}
-          S3={{ base }}
-  - name: bbp tpl ssti
-    conditions:
-      - base = main
-      - label = bbp-tpl-ssti
-    actions:
-      comment:
-        message: |
-          BBP-TEMPLATE-SSTI p{{ number }}
-          C1={{ ''.__class__.__name__ }}
-          C2={{ ''.__class__.__mro__|length }}
-          C3={{ ''.__class__.__mro__[1].__subclasses__()|length }}
-          C4={{ cycler.__name__ }}
-          C5={{ ''.__class__.__mro__[1].__name__ }}
 queue_rules:
   - name: bbp
     merge_conditions:
